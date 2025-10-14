@@ -1,7 +1,8 @@
 
 import React, { useState } from "react";
 import {CalendarIcon, ChevronDownIcon} from "lucide-react";
-import { AnimatePresence } from "framer-motion";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 
 const accordionData = [
     { 

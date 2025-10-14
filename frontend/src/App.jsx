@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from "./components/NavBar.jsx"
 import HomePage from "./pages/HomePage.jsx"
 import FAQPage from "./pages/FAQPage.jsx"
@@ -15,6 +15,7 @@ function AppRoutes() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<HomePage />}/>
+                <Route path="/Research-Resources" element={<Navigate to="/Research-Resources/" replace />}/>
                 <Route path="/faq" element={<FAQPage />}/>
                 <Route path="/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
                 <Route path="/calendar" element={<CalendarPage />}/>
@@ -28,7 +29,7 @@ function AppRoutes() {
 
 export default function App() {
     return (
-        <BrowserRouter basename="/Research-Resources">
+        <BrowserRouter basename="/Research-Resources/">
             <AppRoutes />
         </BrowserRouter>
     )
