@@ -14,12 +14,12 @@ function AppRoutes() {
         <>
             <NavBar />
             <Routes>
-                <Route path="/Purdue-USB-Research-Resources-Website/" element={<HomePage />}/>
-                <Route path="/Purdue-USB-Research-Resources-Website/faq" element={<FAQPage />}/>
-                <Route path="/Purdue-USB-Research-Resources-Website/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
-                <Route path="/Purdue-USB-Research-Resources-Website/calendar" element={<CalendarPage />}/>
-                <Route path="/Purdue-USB-Research-Resources-Website/presenting-your-research" element={<PresentingYourResearchPage />} />
-                <Route path="/Purdue-USB-Research-Resources-Website/cs-specific-research" element={<CSSpecificResearchPage />} />
+                <Route path="/Research-Resources/" element={<HomePage />}/>
+                <Route path="/Research-Resources/faq" element={<FAQPage />}/>
+                <Route path="/Research-Resources/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
+                <Route path="/Research-Resources/calendar" element={<CalendarPage />}/>
+                <Route path="/Research-Resources/presenting-your-research" element={<PresentingYourResearchPage />} />
+                <Route path="/Research-Resources/cs-specific-research" element={<CSSpecificResearchPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>

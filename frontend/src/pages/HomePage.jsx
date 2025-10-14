@@ -27,7 +27,7 @@ export default function HomePage() {
                                className="border-2 border-green-400 text-green-400 px-10 py-4 rounded-xl font-bold text-lg hover:bg-green-400 hover:text-gray-900 transition-all duration-300 flex items-center justify-center">
                                 Amber's Research Thoughts
                             </a>
-                            <a href="/calendar"
+                            <a href="/Research-Resources/calendar"
                                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center justify-center">
                                 View Research Calendar
                             </a>
@@ -35,7 +35,7 @@ export default function HomePage() {
                     </div>
             </div>
 
-            <div className="bg-black/50 backdrop-blur-sm py-10 flex-1 flex items-center">
+            <div className="bg-black/50 backdrop-blur-sm py-30 flex-1 flex items-center">
                 <div className="max-w-7xl mx-auto px-6 w-full">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-white mb-8">Connect with USB</h2>

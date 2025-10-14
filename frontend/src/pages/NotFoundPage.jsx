@@ -21,7 +21,7 @@ export default function NotFoundPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Link 
-                        to="/Purdue-USB-Research-Resources-Website/"
+                        to="/Research-Resources/"
                         className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg"
                     >
                         <Home className="w-5 h-5" />
@@ -48,19 +48,19 @@ export default function NotFoundPage() {
                     </p>
                     <div className="flex flex-wrap gap-3 justify-center">
                         <Link 
-                            to="/Purdue-USB-Research-Resources-Website/faq" 
+                            to="/Research-Resources/faq" 
                             className="text-green-400 hover:text-green-300 underline transition-colors duration-200"
                         >
                             FAQ
                         </Link>
                         <Link 
-                            to="/Purdue-USB-Research-Resources-Website/organizations-and-programs" 
+                            to="/Research-Resources/organizations-and-programs" 
                             className="text-green-400 hover:text-green-300 underline transition-colors duration-200"
                         >
                             Programs
                         </Link>
                         <Link 
-                            to="/Purdue-USB-Research-Resources-Website/calendar" 
+                            to="/Research-Resources/calendar" 
                             className="text-green-400 hover:text-green-300 underline transition-colors duration-200"
                         >
                             Calendar
