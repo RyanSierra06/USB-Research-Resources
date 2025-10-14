@@ -4,5 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), ],
-  base: '/Purdue-USB-Research-Resources-Website/',
+  base: '/Research-Resources/',
 })

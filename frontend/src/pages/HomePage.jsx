@@ -27,7 +27,7 @@ export default function HomePage() {
                                className="border-2 border-green-400 text-green-400 px-10 py-4 rounded-xl font-bold text-lg hover:bg-green-400 hover:text-gray-900 transition-all duration-300 flex items-center justify-center">
                                 Amber's Research Thoughts
                             </a>
-                            <a href="/Research-Resources/calendar"
+                            <a href="/calendar"
                                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center justify-center">
                                 View Research Calendar
                             </a>

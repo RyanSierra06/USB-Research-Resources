@@ -14,12 +14,12 @@ function AppRoutes() {
         <>
             <NavBar />
             <Routes>
-                <Route path="/Research-Resources/" element={<HomePage />}/>
-                <Route path="/Research-Resources/faq" element={<FAQPage />}/>
-                <Route path="/Research-Resources/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
-                <Route path="/Research-Resources/calendar" element={<CalendarPage />}/>
-                <Route path="/Research-Resources/presenting-your-research" element={<PresentingYourResearchPage />} />
-                <Route path="/Research-Resources/cs-specific-research" element={<CSSpecificResearchPage />} />
+                <Route path="/" element={<HomePage />}/>
+                <Route path="/faq" element={<FAQPage />}/>
+                <Route path="/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
+                <Route path="/calendar" element={<CalendarPage />}/>
+                <Route path="/presenting-your-research" element={<PresentingYourResearchPage />} />
+                <Route path="/cs-specific-research" element={<CSSpecificResearchPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>
@@ -28,7 +28,7 @@ function AppRoutes() {
 
 export default function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/Research-Resources">
             <AppRoutes />
         </BrowserRouter>
     )

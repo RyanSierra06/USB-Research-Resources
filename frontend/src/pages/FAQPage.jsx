@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import {CalendarIcon, ChevronDownIcon} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const accordionData = [
     { 
