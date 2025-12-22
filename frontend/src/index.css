@@ -21,3 +21,17 @@ html, body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* Optimized hover styles for cards */
+.card-hover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(55, 65, 81);
+  box-shadow: none;
+  transition: border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98);
+}
+
+.card-hover:hover,
+.card-hover.active {
+  border-color: rgb(22, 163, 74);
+}
