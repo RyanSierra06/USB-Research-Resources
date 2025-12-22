@@ -30,7 +30,7 @@ export default function CalendarPage() {
                 </motion.div>
                 
                 <motion.div 
-                    className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700"
+                    className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ 
                         opacity: 1, 
@@ -47,10 +47,13 @@ export default function CalendarPage() {
                     onHoverStart={() => setIsHovered(true)}
                     onHoverEnd={() => setIsHovered(false)}
                     style={{
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                         boxShadow: isHovered 
                             ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                             : 'none',
-                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                        transition: 'border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98)',
                     }}
                 >
                     <div className="flex justify-center">

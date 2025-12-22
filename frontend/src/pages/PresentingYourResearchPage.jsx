@@ -87,7 +87,7 @@ export default function PresentingYourResearchPage() {
                             return (
                                 <motion.div 
                                     key={index} 
-                                    className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                    className="bg-black/40 rounded-lg p-6 border"
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ 
                                         opacity: 1, 
@@ -106,10 +106,13 @@ export default function PresentingYourResearchPage() {
                                     onHoverStart={() => setIsHovered(true)}
                                     onHoverEnd={() => setIsHovered(false)}
                                     style={{
+                                        borderWidth: '1px',
+                                        borderStyle: 'solid',
+                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                                         boxShadow: isHovered 
                                             ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                                             : 'none',
-                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                        transition: 'border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98)',
                                     }}
                                 >
                                     <div className="mb-4">
@@ -156,7 +159,7 @@ export default function PresentingYourResearchPage() {
                             return (
                                 <motion.div 
                                     key={index}
-                                    className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                    className="bg-black/40 rounded-lg p-6 border"
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     whileInView={{ 
                                         opacity: 1, 
@@ -173,10 +176,13 @@ export default function PresentingYourResearchPage() {
                                     onHoverStart={() => setIsHovered(true)}
                                     onHoverEnd={() => setIsHovered(false)}
                                     style={{
+                                        borderWidth: '1px',
+                                        borderStyle: 'solid',
+                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                                         boxShadow: isHovered 
                                             ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                                             : 'none',
-                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                        transition: 'border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98)',
                                     }}
                                 >
                                     <motion.img
@@ -209,7 +215,7 @@ export default function PresentingYourResearchPage() {
                             return (
                                 <motion.div 
                                     key={index} 
-                                    className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                    className="bg-black/40 rounded-lg p-6 border"
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ 
                                         opacity: 1, 
@@ -228,10 +234,13 @@ export default function PresentingYourResearchPage() {
                                     onHoverStart={() => setIsHovered(true)}
                                     onHoverEnd={() => setIsHovered(false)}
                                     style={{
+                                        borderWidth: '1px',
+                                        borderStyle: 'solid',
+                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                                         boxShadow: isHovered 
                                             ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                                             : 'none',
-                                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                        transition: 'border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98)',
                                     }}
                                 >
                                     <div className="mb-4">
@@ -285,7 +294,7 @@ export default function PresentingYourResearchPage() {
                     <h2 className="text-2xl font-bold text-white mb-6">
                         Need Help with <span className="text-green-400">Research Writing?</span>
                     </h2>
-                    <div className="bg-black/40 rounded-lg p-6 border border-gray-700">
+                    <div className="bg-black/40 rounded-lg p-6 border" style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: 'rgb(55, 65, 81)' }}>
                         <p className="text-gray-300 mb-6">
                             Writing about your research can be challenging, but these resources are here to help you craft
                             compelling research papers and abstracts.

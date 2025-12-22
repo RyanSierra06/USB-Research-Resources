@@ -40,7 +40,7 @@ function AccordionItem({ title, content, isOpen, onToggle }) {
     
     return (
         <motion.div 
-            className="bg-black/40 rounded-lg border border-gray-700 mb-4 overflow-hidden"
+            className="bg-black/40 rounded-lg border mb-4 overflow-hidden"
             initial={false}
             animate={{ 
                 height: "auto",
@@ -51,10 +51,13 @@ function AccordionItem({ title, content, isOpen, onToggle }) {
             onHoverEnd={() => setIsHovered(false)}
             transition={{ duration: 0.3 }}
             style={{
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: isOpen || isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                 boxShadow: isOpen || isHovered 
                     ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                     : 'none',
-                borderColor: isOpen || isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
             }}
         >
             <button

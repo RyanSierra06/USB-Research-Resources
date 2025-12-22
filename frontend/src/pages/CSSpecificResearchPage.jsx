@@ -63,7 +63,7 @@ export default function CSSpecificResearchPage() {
                         return (
                             <motion.div 
                                 key={index} 
-                                className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                className="bg-black/40 rounded-lg p-6 border"
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ 
                                     opacity: 1, 
@@ -81,10 +81,13 @@ export default function CSSpecificResearchPage() {
                                 onHoverStart={() => setIsHovered(true)}
                                 onHoverEnd={() => setIsHovered(false)}
                                 style={{
+                                    borderWidth: '1px',
+                                    borderStyle: 'solid',
+                                    borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
                                     boxShadow: isHovered 
                                         ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
                                         : 'none',
-                                    borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                    transition: 'border-color 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98), box-shadow 0.5s cubic-bezier(0.04, 0.62, 0.23, 0.98)',
                                 }}
                             >
                                 <div className="flex items-center mb-4">
