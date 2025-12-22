@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { ExternalLinkIcon, CodeIcon, UsersIcon, BookOpenIcon, CalendarIcon } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const researchResources = [
     {
@@ -34,9 +35,19 @@ const researchResources = [
 
 export default function CSSpecificResearchPage() {
     return (
-        <div className="min-h-screen pt-20">
+        <motion.div 
+            className="min-h-screen pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+        >
             <div className="max-w-4xl mx-auto px-6 py-12">
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45 }}
+                >
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         CS-Specific <span className="text-green-400">Research</span>
                     </h1>
@@ -44,39 +55,73 @@ export default function CSSpecificResearchPage() {
                         Interested in doing undergraduate research related to your CS/DS/AI Degree but don't know where to start? 
                         Check out this list of helpful resources to learn more!
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="space-y-8 mb-12">
-                    {researchResources.map((resource, index) => (
-                        <div key={index} className="bg-black/40 rounded-lg p-6 border border-gray-700">
-                            <div className="flex items-center mb-4">
-                                <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-4 text-white">
-                                    {resource.icon}
+                    {researchResources.map((resource, index) => {
+                        const [isHovered, setIsHovered] = useState(false);
+                        return (
+                            <motion.div 
+                                key={index} 
+                                className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                initial={{ opacity: 0, x: -30 }}
+                                animate={{ 
+                                    opacity: 1, 
+                                    x: 0,
+                                    scale: isHovered ? 1.05 : 1,
+                                    y: isHovered ? -6 : 0,
+                                }}
+                                transition={{ 
+                                    duration: 0.5,
+                                    ease: [0.04, 0.62, 0.23, 0.98],
+                                    delay: index * 0.07,
+                                    scale: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
+                                    y: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }
+                                }}
+                                onHoverStart={() => setIsHovered(true)}
+                                onHoverEnd={() => setIsHovered(false)}
+                                style={{
+                                    boxShadow: isHovered 
+                                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
+                                        : 'none',
+                                    borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                }}
+                            >
+                                <div className="flex items-center mb-4">
+                                    <motion.div 
+                                        className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-4 text-white"
+                                        whileHover={{ scale: 1.15, y: -3 }}
+                                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                    >
+                                        {resource.icon}
+                                    </motion.div>
+                                    <motion.a 
+                                        href={resource.link} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-xl font-bold text-green-400 hover:text-green-300 transition-colors flex items-center underline"
+                                        whileHover={{ x: 3, scale: 1.03, y: -2 }}
+                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                    >
+                                        {resource.title}
+                                        <ExternalLinkIcon className="w-5 h-5 ml-2" />
+                                    </motion.a>
                                 </div>
-                                <a 
-                                    href={resource.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="text-xl font-bold text-green-400 hover:text-green-300 transition-colors flex items-center underline"
-                                >
-                                    {resource.title}
-                                    <ExternalLinkIcon className="w-5 h-5 ml-2" />
-                                </a>
-                            </div>
                             
-                            <div className="mb-4">
-                                <h4 className="text-green-400 font-semibold mb-2">Description:</h4>
-                                <p className="text-gray-300 leading-relaxed">{resource.description}</p>
-                            </div>
-                            
-                            <div>
-                                <h4 className="text-green-400 font-semibold mb-2">How it can help:</h4>
-                                <p className="text-gray-300 leading-relaxed">{resource.help}</p>
-                            </div>
-                        </div>
-                    ))}
+                                <div className="mb-4">
+                                    <h4 className="text-green-400 font-semibold mb-2">Description:</h4>
+                                    <p className="text-gray-300 leading-relaxed">{resource.description}</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 className="text-green-400 font-semibold mb-2">How it can help:</h4>
+                                    <p className="text-gray-300 leading-relaxed">{resource.help}</p>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

@@ -36,11 +36,26 @@ const accordionData = [
 ];
 
 function AccordionItem({ title, content, isOpen, onToggle }) {
+    const [isHovered, setIsHovered] = React.useState(false);
+    
     return (
         <motion.div 
             className="bg-black/40 rounded-lg border border-gray-700 mb-4 overflow-hidden"
             initial={false}
-            animate={{ height: "auto" }}
+            animate={{ 
+                height: "auto",
+                scale: isOpen ? 1.03 : isHovered ? 1.05 : 1,
+                y: isOpen ? -4 : isHovered ? -6 : 0,
+            }}
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
+            transition={{ duration: 0.3 }}
+            style={{
+                boxShadow: isOpen || isHovered 
+                    ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
+                    : 'none',
+                borderColor: isOpen || isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+            }}
         >
             <button
                 className="w-full px-6 py-4 text-left flex items-center justify-between text-white hover:bg-gray-700/50 transition-colors rounded-lg"
@@ -49,7 +64,7 @@ function AccordionItem({ title, content, isOpen, onToggle }) {
                 <span className="font-semibold text-lg">{title}</span>
                 <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
                     <ChevronDownIcon className="w-5 h-5 text-green-400" />
                 </motion.div>
@@ -61,9 +76,9 @@ function AccordionItem({ title, content, isOpen, onToggle }) {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ 
-                            duration: 0.4, 
+                            duration: 0.35, 
                             ease: [0.04, 0.62, 0.23, 0.98],
-                            opacity: { duration: 0.3 }
+                            opacity: { duration: 0.25 }
                         }}
                         className="overflow-hidden"
                     >
@@ -73,7 +88,7 @@ function AccordionItem({ title, content, isOpen, onToggle }) {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -10, opacity: 0 }}
                             transition={{ 
-                                duration: 0.3, 
+                                duration: 0.25, 
                                 ease: [0.04, 0.62, 0.23, 0.98],
                                 delay: 0.1
                             }}
@@ -98,16 +113,26 @@ export default function FAQPage() {
     };
 
     return (
-        <div className="min-h-screen pt-20">
+        <motion.div 
+            className="min-h-screen pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+        >
             <div className="max-w-4xl mx-auto px-6 py-12">
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         Frequently Asked <span className="text-green-400">Questions</span>
                     </h1>
                     <p className="text-xl text-green-100 max-w-3xl mx-auto">
                         Find answers to common questions about undergraduate research at Purdue University.
                     </p>
-                </div>
+                </motion.div>
                 
                 <div className="space-y-4">
                     {accordionData.map((item, index) => (
@@ -122,27 +147,39 @@ export default function FAQPage() {
                 </div>
 
                 {/* Help Section */}
-                <div className="mt-16">
-                    <div className="bg-gradient-to-r from-green-900 to-green-800 rounded-lg p-8 text-center">
-                    <h2 className="text-2xl font-bold text-white mb-4">
-                        Need More Help? Schedule an Appointment!
-                    </h2>
-                    <p className="text-xl text-green-100 mb-6">
-                        Still have some questions that weren't answered on this page or in our FAQ Section?
-                    </p>
-                    <a
-                        href="https://calendly.com/csstudentaffairs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center bg-white text-green-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                <motion.div 
+                    className="mt-16"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <motion.div 
+                        className="bg-gradient-to-r from-green-900 to-green-800 rounded-lg p-8 text-center"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
                     >
-                        <CalendarIcon className="w-5 h-5 mr-2" />
-                        Schedule an Appointment with Amber Stanley
-                    </a>
-                    </div>
-                </div>
+                        <h2 className="text-2xl font-bold text-white mb-4">
+                            Need More Help? Schedule an Appointment!
+                        </h2>
+                        <p className="text-xl text-green-100 mb-6">
+                            Still have some questions that weren't answered on this page or in our FAQ Section?
+                        </p>
+                        <motion.a
+                            href="https://calendly.com/csstudentaffairs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center bg-white text-green-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl"
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <CalendarIcon className="w-5 h-5 mr-2" />
+                            Schedule an Appointment with Amber Stanley
+                        </motion.a>
+                    </motion.div>
+                </motion.div>
             </div>
 
-        </div>
+        </motion.div>
     );
 }

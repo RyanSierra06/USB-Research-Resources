@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { ExternalLinkIcon } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const organizations = [
     {
@@ -45,36 +46,76 @@ const organizations = [
 
 export default function OrganizationsProgramsPage() {
     return (
-        <div className="min-h-screen pt-20">
+        <motion.div 
+            className="min-h-screen pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+        >
             <div className="max-w-4xl mx-auto px-6 py-12">
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45 }}
+                >
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         Research <span className="text-green-400">Organizations & Programs</span>
                     </h1>
                     <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                         Discover the various organizations and programs that support undergraduate research at Purdue University.
                     </p>
-                </div>
+                </motion.div>
                 
                 <div className="space-y-8">
-                    {organizations.map((org, index) => (
-                        <div key={index} className="bg-black/40 rounded-lg p-6 border border-gray-700">
-                            <div className="mb-4">
-                                <a 
-                                    href={org.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="text-xl font-bold text-green-400 hover:text-green-300 transition-colors flex items-center underline"
-                                >
-                                    {org.title}
-                                    <ExternalLinkIcon className="w-5 h-5 ml-2" />
-                                </a>
-                            </div>
-                            <p className="text-gray-300 leading-relaxed">{org.description}</p>
-                        </div>
-                    ))}
+                    {organizations.map((org, index) => {
+                        const [isHovered, setIsHovered] = useState(false);
+                        return (
+                            <motion.div 
+                                key={index} 
+                                className="bg-black/40 rounded-lg p-6 border border-gray-700"
+                                initial={{ opacity: 0, x: -30 }}
+                                animate={{ 
+                                    opacity: 1, 
+                                    x: 0,
+                                    scale: isHovered ? 1.05 : 1,
+                                    y: isHovered ? -6 : 0,
+                                }}
+                                transition={{ 
+                                    duration: 0.5,
+                                    ease: [0.04, 0.62, 0.23, 0.98],
+                                    delay: index * 0.07,
+                                    scale: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
+                                    y: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }
+                                }}
+                                onHoverStart={() => setIsHovered(true)}
+                                onHoverEnd={() => setIsHovered(false)}
+                                style={{
+                                    boxShadow: isHovered 
+                                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
+                                        : 'none',
+                                    borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                                }}
+                            >
+                                <div className="mb-4">
+                                    <motion.a 
+                                        href={org.link} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-xl font-bold text-green-400 hover:text-green-300 transition-colors flex items-center underline"
+                                        whileHover={{ x: 4, scale: 1.03, y: -2 }}
+                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                    >
+                                        {org.title}
+                                        <ExternalLinkIcon className="w-5 h-5 ml-2" />
+                                    </motion.a>
+                                </div>
+                                <p className="text-gray-300 leading-relaxed">{org.description}</p>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
 import NavBar from "./components/NavBar.jsx"
 import HomePage from "./pages/HomePage.jsx"
 import FAQPage from "./pages/FAQPage.jsx"
@@ -9,27 +11,54 @@ import CSSpecificResearchPage from "./pages/CSSpecificResearchPage.jsx"
 import NotFoundPage from "./pages/NotFoundPage.jsx"
 
 
+function ScrollToTop() {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
+    return null
+}
+
+function PageWrapper({ children }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+            {children}
+        </motion.div>
+    )
+}
+
 function AppRoutes() {
+    const location = useLocation()
+    
     return (
         <>
+            <ScrollToTop />
             <NavBar />
-            <Routes>
-                <Route path="/" element={<HomePage />}/>
-                <Route path="/Research-Resources" element={<Navigate to="/Research-Resources/" replace />}/>
-                <Route path="/faq" element={<FAQPage />}/>
-                <Route path="/organizations-and-programs" element={<OrganizationsProgramsPage />}/>
-                <Route path="/calendar" element={<CalendarPage />}/>
-                <Route path="/presenting-your-research" element={<PresentingYourResearchPage />} />
-                <Route path="/cs-specific-research" element={<CSSpecificResearchPage />} />
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+            <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>}/>
+                    <Route path="/faq" element={<PageWrapper><FAQPage /></PageWrapper>}/>
+                    <Route path="/organizations-and-programs" element={<PageWrapper><OrganizationsProgramsPage /></PageWrapper>}/>
+                    <Route path="/calendar" element={<PageWrapper><CalendarPage /></PageWrapper>}/>
+                    <Route path="/presenting-your-research" element={<PageWrapper><PresentingYourResearchPage /></PageWrapper>} />
+                    <Route path="/cs-specific-research" element={<PageWrapper><CSSpecificResearchPage /></PageWrapper>} />
+                    <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
+                </Routes>
+            </AnimatePresence>
         </>
     )
 }
 
 export default function App() {
     return (
-        <BrowserRouter basename="/Research-Resources/">
+        <BrowserRouter>
             <AppRoutes />
         </BrowserRouter>
     )

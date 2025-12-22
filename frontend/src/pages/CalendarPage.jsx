@@ -1,23 +1,58 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { motion } from 'framer-motion';
 
 export default function CalendarPage() {
     const calendarId = '88e0056451d336ea63dbb2cfc2ae5691fb511e40dbcc5e5d79dc6ed439fb7337@group.calendar.google.com'
     const timeZone = 'America%2FIndiana%2FIndianapolis'
+    const [isHovered, setIsHovered] = useState(false);
     
     return (
-        <div className="min-h-screen pt-20">
+        <motion.div 
+            className="min-h-screen pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+        >
             <div className="max-w-7xl mx-auto px-6 py-12">
-                <div className="text-center mb-12">
+                <motion.div 
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45 }}
+                >
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         Research <span className="text-green-400">Calendar</span>
                     </h1>
                     <p className="text-xl text-green-100 max-w-3xl mx-auto">
                         Stay updated with research events, deadlines, and important dates at Purdue University.
                     </p>
-                </div>
+                </motion.div>
                 
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
+                <motion.div 
+                    className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ 
+                        opacity: 1, 
+                        scale: isHovered ? 1.02 : 1,
+                        y: isHovered ? -4 : 0,
+                    }}
+                    transition={{ 
+                        duration: 0.5,
+                        ease: [0.04, 0.62, 0.23, 0.98],
+                        delay: 0.2,
+                        scale: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
+                        y: { delay: 0, duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }
+                    }}
+                    onHoverStart={() => setIsHovered(true)}
+                    onHoverEnd={() => setIsHovered(false)}
+                    style={{
+                        boxShadow: isHovered 
+                            ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(22, 163, 74, 0.4)' 
+                            : 'none',
+                        borderColor: isHovered ? 'rgb(22, 163, 74)' : 'rgb(55, 65, 81)',
+                    }}
+                >
                     <div className="flex justify-center">
                         <iframe
                             title="Google Calendar"
@@ -33,8 +68,8 @@ export default function CalendarPage() {
                             allowFullScreen
                         ></iframe>
                     </div>
-                </div>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 }
